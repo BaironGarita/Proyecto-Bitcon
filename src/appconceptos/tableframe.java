@@ -14,33 +14,35 @@ import javax.swing.table.DefaultTableModel;
  */
 public class tableframe extends javax.swing.JFrame {
 
-    DefaultTableModel mt = new DefaultTableModel();
-   // tableframe tf = new tableframe();
+    DefaultTableModel ObjTabla = new DefaultTableModel();
+    // tableframe tf = new tableframe();
 
     /*
      * Creates new form tableframe
      */
+    
+    Ficha objFicha = new Ficha();
+    Tablero objTablero = new Tablero();
+    
     public tableframe() {
         initComponents();
         //------------------
         String titulo[] = {"B", "I", "T", "C", "O", "N"};
-        mt.setColumnIdentifiers(titulo);
-        jTable2.setModel(mt);
+        ObjTabla.setColumnIdentifiers(titulo);
+        Tbl_Bitcon.setModel(ObjTabla);
         //------------------
         // Establecer el color de fondo del JFrame
         getContentPane().setBackground(Color.WHITE);
-        jTable2.setModel(mt);
-
-        jTable2.changeSelection(0, ICONIFIED, false, false);
+        Tbl_Bitcon.setModel(ObjTabla);
+        Tbl_Bitcon.changeSelection(0, ICONIFIED, false, false);
+        
         // Agregar filas al modelo de la tabla con números aleatorios
-        for (int i = 0; i < 6; i++) {
+        for (int DIM01 = 0; DIM01 < 6; DIM01++) {
             Object[] fila = new Object[6]; // Crear un array para una fila
-
-            for (int j = 0; j < 6; j++) {
-                int num = (int) (Math.random() * 66); // Generar un número aleatorio
-                fila[j] = num; // Asignar el número aleatorio a la celda correspondiente
+            for (int DIM02 = 0; DIM02 < 6; DIM02++) {
+                fila[DIM02] = 1; // Asignar el número aleatorio a la celda correspondiente
             }
-            mt.addRow(fila); // Agregar la fila al modelo de la tabla
+            ObjTabla.addRow(fila); // Agregar la fila al modelo de la tabla
         }
     }
 
@@ -55,8 +57,11 @@ public class tableframe extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Tbl_Bitcon = new javax.swing.JTable();
         icn_bitcon = new javax.swing.JButton();
+        Cbo_SistemaNumerico = new javax.swing.JComboBox<>();
+        Lbl_SisNumerico = new javax.swing.JLabel();
+        Btn_Jugar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BITCON");
@@ -71,7 +76,7 @@ public class tableframe extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Tbl_Bitcon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -84,12 +89,23 @@ public class tableframe extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
-        jTable2.getTableHeader().setResizingAllowed(false);
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
+        Tbl_Bitcon.getTableHeader().setResizingAllowed(false);
+        Tbl_Bitcon.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(Tbl_Bitcon);
 
         icn_bitcon.setForeground(new java.awt.Color(255, 255, 255));
         icn_bitcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/appconceptos/BITCON.png"))); // NOI18N
+
+        Cbo_SistemaNumerico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quinario", "Octal", "Decimal", "DuoDecimal", "Hexadecimal" }));
+
+        Lbl_SisNumerico.setText("Sistema Numerico");
+
+        Btn_Jugar.setText("Jugar");
+        Btn_Jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_JugarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,21 +114,33 @@ public class tableframe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cbo_SistemaNumerico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lbl_SisNumerico)
+                            .addComponent(Btn_Jugar))
+                        .addGap(158, 158, 158)
                         .addComponent(icn_bitcon, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(icn_bitcon, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icn_bitcon, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lbl_SisNumerico)
+                        .addGap(17, 17, 17)
+                        .addComponent(Cbo_SistemaNumerico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(Btn_Jugar)
+                .addContainerGap())
         );
 
         pack();
@@ -123,6 +151,21 @@ public class tableframe extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_formWindowClosed
+
+    private void Btn_JugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_JugarActionPerformed
+        // TODO add your handling code here:
+        int indiceCombo;
+        String indiceNombre = "";
+        int sistemaNumerico = 0;
+        indiceCombo = Cbo_SistemaNumerico.getSelectedIndex();
+        sistemaNumerico = switch (indiceCombo) {
+            case 0 -> Ficha.QUINARIO;
+            case 1 -> Ficha.OCTAL;
+            case 2 -> Ficha.DECIMAL;
+            case 3 -> Ficha.DUODECIMAL;
+            default -> Ficha.HEXADECIMAL;
+        };
+    }//GEN-LAST:event_Btn_JugarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,9 +203,12 @@ public class tableframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Jugar;
+    private javax.swing.JComboBox<String> Cbo_SistemaNumerico;
+    private javax.swing.JLabel Lbl_SisNumerico;
+    private javax.swing.JTable Tbl_Bitcon;
     private javax.swing.JButton icn_bitcon;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

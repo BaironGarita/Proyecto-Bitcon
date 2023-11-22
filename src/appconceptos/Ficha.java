@@ -64,7 +64,7 @@ public class Ficha {
                 case 12 -> TempHilera.insert(0, "C");
                 default -> TempHilera.insert(0, residuo);
             }
-            numero /= 5;
+            numero /= 12;
         }
         Hilera+=TempHilera;
         return Hilera;

@@ -11,7 +11,4 @@ package appconceptos;
 public class Juego {
     public static final int MAXIMOTABLEROS = 100;
     Tablero objTablero[] = new Tablero[MAXIMOTABLEROS];
-    
-    
-    
 }

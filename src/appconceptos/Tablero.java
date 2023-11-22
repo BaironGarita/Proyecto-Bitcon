@@ -12,15 +12,13 @@ public class Tablero {
     public static final int DIM01 = 6;
     public static final int DIM02 = 6;
     private Ficha objTablero[][] = new Ficha[DIM01][DIM02];
-    
-    
-    
+      
     public void GeneraTablero() {
         int numRandom; 
         for (int DIM01 = 0; DIM01 < this.DIM01; DIM01++) {
             for (int DIM02 = 0; DIM02 < this.DIM02; DIM02++) {
                 Ficha ObjTempFicha = new Ficha();
-                numRandom = (int) (Math.random()*300);
+                numRandom = (int) (Math.random()*95);
                 ObjTempFicha.setNumDec(numRandom);
                 objTablero[DIM01][DIM02] = ObjTempFicha;
             }
@@ -28,7 +26,7 @@ public class Tablero {
        
     }
     
-    public String imprimeTablero() {
+    /*public String imprimeTablero() {
         String Hilera = "";
         Ficha objTempFicha = new Ficha();
         for (int DIM01 = 0; DIM01 < this.DIM01; DIM01++) {
@@ -40,9 +38,8 @@ public class Tablero {
             }
             Hilera += "\n";
         }
-        return Hilera;
-        
-    }
+        return Hilera;    
+    }*/
     
     public String imprimeTablero(int sistemaNumerico) {
         String Hilera = "";
@@ -79,8 +76,11 @@ public class Tablero {
     }
     
     
- /*
-    public void GeneraTablero () {
+/*
+    public void GeneraTableros () {
+        for (int DIM01 = 0; DIM01 < 100; DIM01++) {
+            
+        }
        this.GeneraTableroCol01();
        this.GeneraTableroCol02();
        this.GeneraTableroCol03();
@@ -94,11 +94,6 @@ public class Tablero {
     private void GeneraTableroCol02 () {
     }
     private void GeneraTableroCol03 () {
-    }
-    ...
-    
-    */   
-    
-    
-    
+    }   
+*/
 }
