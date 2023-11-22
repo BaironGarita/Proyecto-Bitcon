@@ -57,15 +57,12 @@ public class Ficha {
             Hilera += "0";
         }
         while (numero > 0) {
-            int residuo = numero % 5;
-            if(residuo == 10){
-                TempHilera.insert(0, "A");
-            }else if (residuo == 11){
-                TempHilera.insert(0, "B");
-            }else if(residuo == 12){
-                TempHilera.insert(0, "C");
-            }else{
-                TempHilera.insert(0, residuo);
+            int residuo = numero % 12;
+            switch (residuo) {
+                case 10 -> TempHilera.insert(0, "A");
+                case 11 -> TempHilera.insert(0, "B");
+                case 12 -> TempHilera.insert(0, "C");
+                default -> TempHilera.insert(0, residuo);
             }
             numero /= 5;
         }
