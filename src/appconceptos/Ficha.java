@@ -33,7 +33,6 @@ public class Ficha {
         this.numHex = Integer.toHexString(numDec).toUpperCase();
         this.numQui = DecimalQuinario(numDec);
         this.numDuo = DecimalDuodecimal(numDec);
-
     }
     
     public String DecimalQuinario(int numero) {
