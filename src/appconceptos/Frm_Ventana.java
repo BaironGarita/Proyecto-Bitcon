@@ -188,26 +188,16 @@ public class Frm_Ventana extends javax.swing.JFrame {
         indiceCombo = Cbo_BaseNumerica.getSelectedIndex();
         /*  indiceNombre = (String) Cbo_BaseNumerica.getSelectedItem();
         if (indiceNombre.equalsIgnoreCase("Quinario")) {
-            sistemaNumerico = Ficha.QUINARIO;
+        sistemaNumerico = Ficha.QUINARIO;
         }*/
-        
-        if (indiceCombo == 0) {
-            sistemaNumerico = Ficha.QUINARIO;
-        } else {
-            if (indiceCombo == 1) {
-                sistemaNumerico = Ficha.OCTAL;
-            } else {
-                if (indiceCombo == 2) {
-                    sistemaNumerico = Ficha.DECIMAL;
-                } else {
-                    if (indiceCombo == 3) {
-                        sistemaNumerico = Ficha.DUODECIMAL;
-                    } else {
-                        sistemaNumerico = Ficha.HEXADECIMAL;
-                    }
-                }
-            }
-        }
+        sistemaNumerico = switch (indiceCombo) {
+            case 0 -> Ficha.QUINARIO;
+            case 1 -> Ficha.OCTAL;
+            case 2 -> Ficha.DECIMAL;
+            case 3 -> Ficha.DUODECIMAL;
+            default -> Ficha.HEXADECIMAL;
+        };
+ 
         Txa_ImpresionTablero.setText(objTablero.imprimeTablero(sistemaNumerico));
 
     }//GEN-LAST:event_Btn_ImprimeTableroActionPerformed
